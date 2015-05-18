@@ -22,22 +22,36 @@
   <paper-input ng-model="firstname"></paper-input>
 
   <h1>Hello {{ firstname }}</h1>
-  <m-test ng-model="firstname"></m-test>
+   <m-test ng-model="firstname" ng-click="myClick()"></m-test>
+
   </div>
 </body>
 
 <script>
+
+
 var app = angular.module('myApp', ['ng-polymer-elements']);
 app.controller('myCtrl', function($scope) {
     $scope.firstName = "John";
     $scope.lastName = "Doe";
+    $scope.addresses = [{
+       "number":"3",
+       "street":"main",
+    }];
+
+    $scope.myClick = function(event) { alert('Hello'); }; 
+
 });
 
 angular.module('ng-polymer-elements').constant('$ngPolymerMappings', {
    mTest: {
       ngModel: {
          primitive: 'firstname'
+      },
+      ngClick: {
+         event: 'someEvent'
       }
+
    }
 });
 
