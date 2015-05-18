@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>poly foo</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/ng-polymer-elements/ng-polymer-elements.js"></script>
+  <link rel="import" href="bower_components/paper-input/paper-input.html">
+  
+
+  <link rel="import" href="elements/elements.html">
+  <link rel="import" href="elements/m-test/m-test.html">
+</head>
+
+<body unresolved fullbleed layout vertical>
+  <div  ng-controller="myCtrl">
+  <input ng-model="firstname" type="text">
+  <paper-input ng-model="firstname"></paper-input>
+
+  <h1>Hello {{ firstname }}</h1>
+  <m-test ng-model="firstname"></m-test>
+  </div>
+</body>
+
+<script>
+var app = angular.module('myApp', ['ng-polymer-elements']);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+
+angular.module('ng-polymer-elements').constant('$ngPolymerMappings', {
+   mTest: {
+      ngModel: {
+         primitive: 'firstname'
+      }
+   }
+});
+
+</script>
+
+</html>
+
